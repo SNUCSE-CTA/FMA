@@ -1,5 +1,5 @@
 /* FM-index of alignment with gaps
-    Copyright (C) 2019  Hyunjoon Kim
+    Copyright (C) 2015-2019  Hyunjoon Kim
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -71,12 +71,22 @@ int main(int argc, char* argv[]) {
 		++patternNum;
 		std::cout << "query " << patternNum << ": " << query << std::endl;
 		begin = clock();
+		// Counts the number of occurrences of a pattern in FMA.
+		// \param fma           The FMA object.
+		// \param query.begin() Iterator to the begin of the pattern(inclusive).
+		// \param query.end()   Iterator to the end of the pattern(exclusive).
+		// \return              The number of occurrences of the pattern in FMA.
 		size_t occs = count(fma, query.begin(), query.end());
 		end = clock();
 		count_elapsed += double(end - begin) / CLOCKS_PER_SEC;
 		std::cout << "# of occurrences: " << occs << std::endl;
 		if(occs > 0) {
 			begin = clock();
+			// Calculates all occurrences of a pattern in FMA.
+			// \param fma           The FMA object.
+			// \param query.begin() Iterator to the begin of the pattern(inclusive).
+			// \param query.end()   Iterator to the end of the pattern(exclusive).
+			// \return              A vector containing the occrrences of the pattern in FMA.
 			auto locations = locate(fma, query.begin(), query.end());
 			end = clock();
 			locate_elapsed += double(end - begin) / CLOCKS_PER_SEC;

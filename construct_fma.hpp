@@ -1,5 +1,5 @@
 /* FM-index of alignment with gaps
-    Copyright (C) 2019  Hyunjoon Kim
+    Copyright (C) 2015-2019  Hyunjoon Kim
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -13,6 +13,14 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see https://www.gnu.org/licenses/.
+*/
+/*! \file construct_fma.hpp
+    \brief construct_fma.hpp contains a construction method for the Burrows Wheeler Transform (BWT) of Suffix Array of Alignment (SAA), FM-index of alignments with gaps, and includes the strategy class for an alphabet and SAA sampling in an SAA.
+    \author Hyunjoon Kim
+    \reference 
+    [1] J. Na, H. Kim, H. Park, T. Lecroq, M. Le'onard, L. Mouchar, and K. Park, FM-index of alignment: A compressed index for similar strings, TCS 638:159-170, 2016
+    [2] J. Na, H. Kim, S. Min, H. Park, T. Lecroq, M. Le'onard, L. Mouchard, and K. Park, FM-index of alignment with gaps, TCS 710:148-157, 2018
+    \date 2016.09
 */
 
 #include <string>

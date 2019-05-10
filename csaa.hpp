@@ -1,5 +1,5 @@
 /* FM-index of alignment with gaps
-    Copyright (C) 2019  Hyunjoon Kim
+    Copyright (C) 2015-2019  Hyunjoon Kim
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -13,6 +13,14 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see https://www.gnu.org/licenses/.
+*/
+/*! \file csaa.hpp
+    \brief csaa.hpp contains an implementation of FM-index of alignment with gaps.
+    \author Hyunjoon Kim
+    \reference 
+    [1] J. Na, H. Kim, H. Park, T. Lecroq, M. Le'onard, L. Mouchar, and K. Park, FM-index of alignment: A compressed index for similar strings, TCS 638:159-170, 2016
+    [2] J. Na, H. Kim, S. Min, H. Park, T. Lecroq, M. Le'onard, L. Mouchard, and K. Park, FM-index of alignment with gaps, TCS 710:148-157, 2018
+    \date 2016.09
 */
 
 #include <cstdlib>  // for exit(). should be removed after debugging.
@@ -441,11 +449,21 @@ class csaa
             // find the char with nonzero occ value
             else{
                 for(j = 1; j < sigma; ++j){
-                    if(m_bv[0][char_index(comp2char[j])][0] != 0){
-                        //ch = comp2char[j];
-                        //return C[j] + bwt.rank(i, ch);  
-                        return C[j];  
+                    size_type lf_val    = C[j] + bwt.rank(i+1, comp2char[j])-1;
+                    size_type pair      = m_saa_sample.saa_value(lf_val);
+                    size_type div       = pair/m_text_size;
+                    // std::cout <<"Case 2. LF["<<i<<"]= "<<C[x]<<"+"<<bwt.rank(i+1, comp2char[x])<<"-1"<<std::endl;
+                    // std::cout <<"Case 2. POS["<<lf_val<<"]: ("<<pair/m_text_size<<","<<pair%m_text_size<<"), pair: "<<pair<<", text_size: "<<m_text_size<<std::endl;
+                    if(div == strn){
+                        return lf_val;
                     }
+                    else if(m_saa_sample.strv[div*num_string+strn-1]){ 
+                        return lf_val;
+                    }
+                    else if(strn == 0){
+                        std::cout << "csaa.hpp: lf_value error" << std::endl;
+                        exit(1);
+                    } 
                 }
             }
             
@@ -455,7 +473,7 @@ class csaa
             // Case 1-2. If the occurrence sum is 1, 
             // return the value calcalated from the char in which the occ changes.
             if(occCnt + extCnt == 1){
-                //std::cout <<"Case 1. LF["<<i<<"]= "<<C[char2comp[ch]]<<"+"<<bwt.rank(i+1, ch)<<"-1"<<std::endl;
+                // std::cout <<"Case 1. LF["<<i<<"]= "<<C[char2comp[ch]]<<"+"<<bwt.rank(i+1, ch)<<"-1"<<std::endl;
                 return C[char2comp[ch]] + bwt.rank(i+1, ch) - 1; 
             }
             else if(occCnt == 0 and extCnt == 0){
@@ -469,8 +487,8 @@ class csaa
                         size_type lf_val    = C[x] + bwt.rank(i+1, comp2char[x])-1;
                         size_type pair      = m_saa_sample.saa_value(lf_val);
                         size_type div       = pair/m_text_size;
-                        //std::cout <<"Case 2. LF["<<i<<"]= "<<C[x]<<"+"<<bwt.rank(i+1, comp2char[x])<<"-1"<<std::endl;
-                        //std::cout <<"Case 2. POS["<<lf_val<<"]: ("<<pair/m_text_size<<","<<pair%m_text_size<<"), pair: "<<pair<<", text_size: "<<m_text_size<<std::endl;
+                        // std::cout <<"Case 2. LF["<<i<<"]= "<<C[x]<<"+"<<bwt.rank(i+1, comp2char[x])<<"-1"<<std::endl;
+                        // std::cout <<"Case 2. POS["<<lf_val<<"]: ("<<pair/m_text_size<<","<<pair%m_text_size<<"), pair: "<<pair<<", text_size: "<<m_text_size<<std::endl;
                         if(div == strn){
                             return lf_val;
                         }
@@ -493,8 +511,8 @@ class csaa
                         lf_val    = C[x] + bwt.rank(i+1, comp2char[x])-1;
                         pair      = m_saa_sample.saa_value(lf_val);
                         div       = pair/m_text_size;
-                        //std::cout <<"Case 3. LF["<<i<<"]= "<<C[x]<<"+"<<bwt.rank(i+1, comp2char[x])<<"-1"<<std::endl;
-                        //std::cout <<"Case 3. POS["<<lf_val<<"]: ("<<pair/m_text_size<<","<<pair%m_text_size<<"), pair: "<<pair<<", text_size: "<<m_text_size<<std::endl;
+                        // std::cout <<"Case 3. LF["<<i<<"]= "<<C[x]<<"+"<<bwt.rank(i+1, comp2char[x])<<"-1"<<std::endl;
+                        // std::cout <<"Case 3. POS["<<lf_val<<"]: ("<<pair/m_text_size<<","<<pair%m_text_size<<"), pair: "<<pair<<", text_size: "<<m_text_size<<std::endl;
                         if(div == strn){
                             return lf_val;
                         }

@@ -1,5 +1,5 @@
 /* FM-index of alignment with gaps
-    Copyright (C) 2019  Hyunjoon Kim
+    Copyright (C) 2015-2019  Hyunjoon Kim
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -73,6 +73,14 @@ int main(int argc, char* argv[]) {
 		size_t extract_end = gap_info.ConvertToAlign(seqNum - 1, offset + pattern_size - 1);
 
 		begin = clock();
+		// Retrieve the substring T_i[begin..end] of the original i-th text T_i to text[0..end-begin+1].
+		// \param fma           The FMA object.
+		// \param seqNum        ID of the sequence which should be extracted (seqNum-th sequence).
+		// \param extract_begin Position of the first character which should be extracted (inclusive).
+		// \param extract_end   Position of the last character which should be extracted (inclusive).
+		// \param pattern_size  The length of the pattern that should be extracted .
+		// \param gap_info      The GapInfo object.
+		// \return s            The object holding the extracted text. 
 		auto s = extract(fma, seqNum, extract_begin, extract_end, pattern_size, gap_info);
 		end = clock();
 		extract_elapsed += double(end - begin) / CLOCKS_PER_SEC;

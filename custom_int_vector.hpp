@@ -1,5 +1,5 @@
 /* FM-index of alignment with gaps
-    Copyright (C) 2019  Seunghwan Min
+    Copyright (C) 2015-2019  Seunghwan Min
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -13,6 +13,11 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see https://www.gnu.org/licenses/.
+*/
+/*! \file custom_int_vector.hpp
+    \brief custom_int_vector.hpp contains a modified int_vector class of sdsl which uses a limited memory.
+    \author Seunghwan Min
+    \date 2017.1
 */
 
 #include <iostream>

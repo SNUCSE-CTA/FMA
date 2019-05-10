@@ -1,5 +1,5 @@
 /* FM-index of alignment with gaps
-    Copyright (C) 2019  Seunghwan Min
+    Copyright (C) 2015-2019  Seunghwan Min
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -13,6 +13,11 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see https://www.gnu.org/licenses/.
+*/
+/*! \file io.hpp
+    \brief io.hpp contains an implementation of load and store functions.
+    \author Seunghwan Min
+    \date 2017.1
 */
 
 #include <fstream>

@@ -1,5 +1,5 @@
 /* FM-index of alignment with gaps
-    Copyright (C) 2019  Seunghwan Min
+    Copyright (C) 2015-2019  Seunghwan Min
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -13,6 +13,13 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see https://www.gnu.org/licenses/.
+*/
+/*! \file saa.hpp
+    \brief saa.hpp contains an implementation suffix array of alignment.
+    \author Seunghwan Min
+    \reference
+    [1] J. Na, H. Park, S. Lee, M. Hong, T. Lecroq, L. Mouchard, and K. Park, Suffix array of alignment: A practical index for similar data, In International Symposium on String Processing and Information Retrieval, 8214:243-254, Springer, Cham, 2013.
+    \date 2017.11
 */
 
 #include <iostream>

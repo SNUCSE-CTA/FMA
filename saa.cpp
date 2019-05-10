@@ -1,5 +1,5 @@
 /* FM-index of alignment with gaps
-    Copyright (C) 2019  Seunghwan Min
+    Copyright (C) 2015-2019  Seunghwan Min
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -806,7 +806,7 @@ void SAA::ConstructSAA()
     }
 
     // Consider special char of sequence
-    alignLength -= 1;
+    // alignLength -= 1;
     gapInfo.SetAlignLength(alignLength);
 
     // Update non-shared

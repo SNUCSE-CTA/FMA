@@ -1,5 +1,5 @@
 /* FM-index of alignment with gaps
-    Copyright (C) 2019  Hyunjoon Kim
+    Copyright (C) 2015-2019  Hyunjoon Kim
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -13,6 +13,14 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see https://www.gnu.org/licenses/.
+*/
+/*! \file saa_algorithm.hpp
+    \brief saa_algorithm.hpp contains some helper classes for Suffix Array of Alignment (SAA), and pattern search(locate) and retrieval(extract) algorithms on SAAs.
+    \author Hyunjoon Kim
+    \reference 
+    [1] J. Na, H. Kim, H. Park, T. Lecroq, M. Le'onard, L. Mouchar, and K. Park, FM-index of alignment: A compressed index for similar strings, TCS 638:159-170, 2016
+    [2] J. Na, H. Kim, S. Min, H. Park, T. Lecroq, M. Le'onard, L. Mouchard, and K. Park, FM-index of alignment with gaps, TCS 710:148-157, 2018
+    \date 2016.09
 */
 
 #include <iterator>
@@ -124,17 +132,17 @@ class isa_of_csaa
          */
         value_type value(size_type strn, size_type i, GapInfo& gap_info)const {
             //GapInfo gap_info(m_csa.num_string, m_csa.gap_vector);
-            //size_type i0 = i;
+            size_type i0 = i;
             assert(i < m_csa.text_size);
             // get the leftmost sampled isa value to the right of i
             size_type ii = (i+m_csa.isa_sample_dens-1)/m_csa.isa_sample_dens;
-            //std::cout << "isaa.value("<< strn<<","<<i<<"), leftmost align pos:"<<ii<<std::endl;
+            // std::cout << "isaa.value("<< strn<<","<<i<<"), leftmost align pos:"<<ii<<std::endl;
             value_type result = m_csa.index_table[ii];
             ii *= m_csa.isa_sample_dens;
             size_type ii_ind = gap_info.ConvertToInd(strn-1, ii);
             //bool leftToRight = false;
             if(result >= m_csa.size()){
-                //std::cout << "result(non_shared): " << result << std::endl;
+                // std::cout << "result(non_shared): " << result << std::endl;
                 result = m_csa.ns_isaa_sample[(result-m_csa.size())*m_csa.num_string+strn-1];
                  
                 size_type ii = gap_info.ConvertToAlign(strn-1, ii_ind);
@@ -150,7 +158,7 @@ class isa_of_csaa
                 // endif
             }
             //value_type result = m_csa.isaa_sample[ ii*m_csa.num_string+2 ];
-            //std::cout<<"isa_sample("<<strn<<","<<ii<<"): "<<result<<std::endl;
+            // std::cout<<"isa_sample("<<strn<<","<<ii<<"): "<<result<<std::endl;
             if (ii < m_csa.text_size) {
                 i = ii_ind - gap_info.ConvertToInd(strn-1, i);
                 //if(leftToRight)   ++i;
@@ -158,7 +166,7 @@ class isa_of_csaa
             else {
                 i = gap_info.ConvertToInd(strn-1, m_csa.text_size-1) - gap_info.ConvertToInd(strn-1, i);
             }
-            //size_type i1 = i;
+            size_type i1 = i;
             while (i--) {
                 /*
                 if(m_csa.has_multi_val[result] and strn != 0){
@@ -171,7 +179,7 @@ class isa_of_csaa
                 */
                 result = m_csa.lf.value(strn, result); 
             }
-            //std::cout << "After LF " << i1 << " times, isa.value(" << strn << ", " << i0 << "): " << result << std::endl;
+            // std::cout << "After LF " << i1 << " times, isa.value(" << strn << ", " << i0 << "): " << result << std::endl;
             return result;
         }
         //! Returns the size of the BWT function.
@@ -374,7 +382,7 @@ void build_isaa_samples(typename t_csa::saa_sample_type& saa_sample, typename t_
     // aligned_to_saa_idx[after*num_string+k] == 1 if pos is a gap
     // aligned_to_saa_idx[after*num_string+k] == 0 otherwise 
     
-    //std::cout<<"For non-shared positions which are multiples of isa_sample_dens (pos), check if pos is a gap for each sequence"<<std::endl;
+    // std::cout<<"For non-shared positions which are multiples of isa_sample_dens (pos), check if pos is a gap for each sequence"<<std::endl;
     size_type non_shared_cnt = 0;
     size_type isa_count = 0;
     std::map<size_type, size_type> aligned_to_saa_idx;
@@ -397,11 +405,11 @@ void build_isaa_samples(typename t_csa::saa_sample_type& saa_sample, typename t_
     }
     
     ns_isaa_sample.resize(isa_count);
-    //std::cout << "Suffix_array_helper: ns_isaa_sample size(answer): "<< ns_isaa_sample.size() << std::endl;
+    // std::cout << "Suffix_array_helper: ns_isaa_sample size(answer): "<< ns_isaa_sample.size() << std::endl;
 
     // Assign the corresponding SAA values to the (sequence, position) pairs in the aligned_to_saa_idx
     atos_cnt = 0; 
-    //std::cout<<"Assign the corresponding SAA values to the (sequence, position) pairs in the aligned_to_saa_idx"<<std::endl;
+    // std::cout<<"Assign the corresponding SAA values to the (sequence, position) pairs in the aligned_to_saa_idx"<<std::endl;
     bit_vector::select_1_type select_saa_sample(&saa_sample.marked);
     for(size_type i = 0; i < saa_sample.size(); ++i){
         size_type strn = saa_sample[i]/text_size;
@@ -422,7 +430,7 @@ void build_isaa_samples(typename t_csa::saa_sample_type& saa_sample, typename t_
     }
 
     // Make index_table and ns_isaa_sample
-    //std::cout<<"Make index_table and ns_isaa_sample"<<std::endl;
+    // std::cout<<"Make index_table and ns_isaa_sample"<<std::endl;
     for(size_type i = 0; i < saa_sample.size(); ++i){
         size_type strn = saa_sample[i]/text_size;
         size_type pos  = saa_sample[i]%text_size;

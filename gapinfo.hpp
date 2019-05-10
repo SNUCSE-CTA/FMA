@@ -1,5 +1,5 @@
 /* FM-index of alignment with gaps
-    Copyright (C) 2019  Seunghwan Min
+    Copyright (C) 2015-2019  Seunghwan Min
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -13,6 +13,13 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see https://www.gnu.org/licenses/.
+*/
+/*! \file gapinfo.hpp
+    \brief gapinfo.hpp contains an implementation of class which stores information of gaps.
+    \author Seunghwan Min
+    \reference
+    [1] J. Na, H. Kim, S. Min, H. Park, T. Lecroq, M. Le'onard, L. Mouchard, and K. Park, FM-index of alignment with gaps, TCS 710:148-157, 2018
+    \date 2017.11
 */
 
 #include <iostream>
