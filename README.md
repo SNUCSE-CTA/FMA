@@ -42,13 +42,13 @@ mkdir example/output
 
 Data
 ------
-[chr1.tar.gz](http://theory.snu.ac.kr/data/chr1.tar.gz) (61MB)  
-[3.chr1.vcf.tar.gz](http://theory.snu.ac.kr/data/3.chr1.vcf.tar.gz) (20MB)  
-[100.chr1.vcf.tar.gz](http://theory.snu.ac.kr/data/100.chr1.vcf.tar.gz) (495MB)  
-[250.chr1.vcf.tar.gz](http://theory.snu.ac.kr/data/250.chr1.vcf.tar.gz) (1.5GB)  
-[500.chr1.vcf.tar.gz](http://theory.snu.ac.kr/data/500.chr1.vcf.tar.gz) (3.8GB)  
-[locate pattern](http://theory.snu.ac.kr/data/locate.tar.gz)  
-[extract pattern](http://theory.snu.ac.kr/data/extract.tar.gz)  
+[chr1.tar.gz]https://drive.google.com/open?id=1fX4Re8hhidHLYtrYovYGyi9UXVVAobhD) (61MB)  
+[3.chr1.vcf.tar.gz](https://drive.google.com/open?id=1iqNvOYUndey_PatDBIf8hA3kyMBSfk1S) (20MB)  
+[100.chr1.vcf.tar.gz](https://drive.google.com/open?id=1bCgA8bQVf2sPPgapQe7ZzAlXxWxrZ2cG) (495MB)  
+[250.chr1.vcf.tar.gz](https://drive.google.com/open?id=1Xk3ioGgcKp1bDBU1cAujFdee-nlNyG5j) (1.5GB)  
+[500.chr1.vcf.tar.gz](https://drive.google.com/open?id=1T27ahsMWGytraDqpzhjNGWftl8TJaokX) (3.8GB)  
+[locate pattern](https://drive.google.com/open?id=1eobVHrqMCAX6J5gPfawNg8au3EdiLgsm)  
+[extract pattern](https://drive.google.com/open?id=1nJ5tODAB--S0IJE73BR5ZvVmSP-5pS4Q)  
 
 
 
