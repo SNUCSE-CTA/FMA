@@ -42,7 +42,7 @@ mkdir example/output
 
 Data
 ------
-[chr1.tar.gz]https://drive.google.com/open?id=1fX4Re8hhidHLYtrYovYGyi9UXVVAobhD) (61MB)  
+[chr1.tar.gz](https://drive.google.com/open?id=1fX4Re8hhidHLYtrYovYGyi9UXVVAobhD) (61MB)  
 [3.chr1.vcf.tar.gz](https://drive.google.com/open?id=1iqNvOYUndey_PatDBIf8hA3kyMBSfk1S) (20MB)  
 [100.chr1.vcf.tar.gz](https://drive.google.com/open?id=1bCgA8bQVf2sPPgapQe7ZzAlXxWxrZ2cG) (495MB)  
 [250.chr1.vcf.tar.gz](https://drive.google.com/open?id=1Xk3ioGgcKp1bDBU1cAujFdee-nlNyG5j) (1.5GB)  
